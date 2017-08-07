@@ -2,6 +2,8 @@ var React = require('react');
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 
+//lisa was here
+
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
