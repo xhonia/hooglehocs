@@ -1,6 +1,7 @@
 var React = require('react');
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils} from 'draft-js';
+// import 'bulma/css/bulma.css'
 
 //lisa was here
 
@@ -12,7 +13,11 @@ class MyEditor extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className={'hero is-large is-light is-bold is-fullheight'}>
+        <div className={'has-text-centered box is-light'}>
+            <button className={"button is-light"}>Button1</button>
+            <button className={"button is-light"}>Button2</button>
+        </div>
         <Editor editorState={this.state.editorState} onChange={this.onChange} />
       </div>
 
@@ -21,6 +26,6 @@ class MyEditor extends React.Component {
 }
 
 ReactDOM.render(
-  <MyEditor />,
+  <MyEditor/>,
   document.getElementById('root')
 );
