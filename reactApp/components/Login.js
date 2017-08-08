@@ -1,9 +1,19 @@
 var React = require('react');
 
-const Login = ({})=>{
-  return(
 
-  )
-}
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+
+
+  render(){
+    return(
+      <div>
+
+      </div>
+    )
+  }
+
 
 export default 'Login';
