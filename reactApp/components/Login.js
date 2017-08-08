@@ -1,4 +1,5 @@
 var React = require('react');
+
 import { HashRouter, Link, Redirect } from 'react-router-dom';
 
 const Login = ({history})=>{
@@ -45,5 +46,6 @@ const Login = ({history})=>{
 
   )
 }
+
 
 export default Login;

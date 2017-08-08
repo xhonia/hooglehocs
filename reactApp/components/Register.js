@@ -2,7 +2,9 @@ var React = require('react');
 import ReactDOM from 'react-dom';
 import { HashRouter, Link, Redirect } from 'react-router-dom';
 
+
 const Register= ({history})=>{
+
   return(
     <div>
       <div className={'has-text-centered'}><h1>Register</h1></div>
@@ -75,7 +77,9 @@ const Register= ({history})=>{
   </div>
 </div>
 <div className={"control"}>
+
   <button className={"button "} onClick={() => history.push('/')}>Login</button>
+
 </div>
     </div>
   )
