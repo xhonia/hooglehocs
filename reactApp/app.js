@@ -2,6 +2,7 @@ var React = require('react');
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, Modifier, RichUtils} from 'draft-js';
 import Toolbar from './components/Toolbar';
+import Register from './components/Register'
 
 // Add Decoration in Toolbar
 const decorationStyleMap = {
@@ -38,18 +39,16 @@ class StyleButton extends React.Component {
 const styles = {
   root: {
     fontFamily: '\'Georgia\', serif',
-    fontSize: 14,
-    padding: 20,
-    width: 600,
+    fontSize: 14
   },
-  editor: {
-    borderTop: '1px solid #ddd',
-    cursor: 'text',
-    fontSize: 16,
-    marginTop: 20,
-    minHeight: 400,
-    paddingTop: 20,
-  },
+  // editor: {
+  //   borderTop: '1px solid #ddd',
+  //   cursor: 'text',
+  //   fontSize: 16,
+  //   marginTop: 20,
+  //   minHeight: 400,
+  //   paddingTop: 20,
+  // },
   controls: {
     fontFamily: '\'Helvetica\', sans-serif',
     fontSize: 14,
@@ -194,8 +193,10 @@ class MyEditor extends React.Component {
 
   render() {
     return (
-      <div style={styles.root}>
-        <h1>My Heditor</h1>
+    <div className={'hero is-large is-light is-bold is-fullheight'}>
+      <div className={'has-text-centered is-centered is-light'}> 
+      <div className={'is centered'} style={styles.root}>
+
 
         <ColorControls
           editorState={this.state.editorState}
@@ -222,6 +223,9 @@ class MyEditor extends React.Component {
         </div>
 
       </div>
+      {/* <Register/> */}
+         </div>
+    </div>
     );
   }
 }
