@@ -1,5 +1,5 @@
 const express = require('express')
-//importing node modules 
+//importing node modules
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var path = require('path');
@@ -22,7 +22,7 @@ REQUIRED_ENV.forEach(function(el) {
 
 mongoose.connect(connect);
 //importing other local files
-var models = require('./models');
+var models = require('../models');
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 //starting express

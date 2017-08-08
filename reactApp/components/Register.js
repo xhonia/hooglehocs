@@ -1,9 +1,10 @@
 var React = require('react');
 import ReactDOM from 'react-dom';
 
-const Register= ()=>{
+const Register= ({})=>{
   return(
     <div>
+      <div className={'has-text-centered'}><h1>Register</h1></div>
       <div className={"field"}>
   <label className={"label"}>Name</label>
   <div className={"control"}>
@@ -28,7 +29,7 @@ const Register= ()=>{
 <div className={"field"}>
   <label className={"label"}>Email</label>
   <div className={"control has-icons-left has-icons-right"}>
-    <input className={"input is-danger"} type="text" placeholder="Email input" value="hello@"/>
+    <input className={"input is-danger"} type="text" placeholder="Email input" value=""/>
     <span className={"icon is-small is-left"}>
       <i className={"fa fa-envelope"}></i>
     </span>
@@ -39,7 +40,31 @@ const Register= ()=>{
   <p className={"help is-danger"}>This email is invalid</p>
 </div>
 
+<div className={"field"}>
+  <label className={"label"}>Password</label>
+  <div className={"control has-icons-left has-icons-right"}>
+    <input className={"input is-danger"} type="text" placeholder="Password" value=""/>
+    <span className={"icon is-small is-left"}>
+      <i className={"fa fa-envelope"}></i>
+    </span>
+    <span className={"icon is-small is-right"}>
+      <i className={"fa fa-warning"}></i>
+    </span>
+  </div>
+</div>
 
+<div className={"field"}>
+  <label className={"label"}>Confirm Password</label>
+  <div className={"control has-icons-left has-icons-right"}>
+    <input className={"input is-danger"} type="text" placeholder="Confirm Password" value=""/>
+    <span className={"icon is-small is-left"}>
+      <i className={"fa fa-envelope"}></i>
+    </span>
+    <span className={"icon is-small is-right"}>
+      <i className={"fa fa-warning"}></i>
+    </span>
+  </div>
+</div>
 <div className={"field is-grouped"}>
   <div className={"control"}>
     <button className={"button is-primary"}>Submit</button>
@@ -48,8 +73,11 @@ const Register= ()=>{
     <button className={"button is-link"}>Cancel</button>
   </div>
 </div>
+<div className={"control"}>
+  <button className={"button "}>Login</button>
+</div>
     </div>
   )
 }
 
-export default 'Register';
+export default Register;
