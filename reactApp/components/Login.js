@@ -1,7 +1,7 @@
 var React = require('react');
+import { HashRouter, Link, Redirect } from 'react-router-dom';
 
-
-const Login = ({})=>{
+const Login = ({history})=>{
   return(
     <div>
     <div>
@@ -39,12 +39,11 @@ const Login = ({})=>{
   </div>
   </div>
   <div className={"control"}>
-  <button className={"button "}>Register</button>
+  <button className={"button "} onClick={() => history.push('/register')}>Register</button>
   </div>
     </div>
+
   )
 }
-
-
 
 export default Login;
