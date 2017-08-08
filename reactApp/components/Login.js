@@ -1,5 +1,6 @@
 var React = require('react');
 
+
 const Login = ({})=>{
   return(
     <div>
@@ -41,8 +42,9 @@ const Login = ({})=>{
   <button className={"button "}>Register</button>
   </div>
     </div>
-
   )
 }
+
+
 
 export default Login;
