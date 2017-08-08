@@ -227,6 +227,6 @@ class MyEditor extends React.Component {
 }
 
 ReactDOM.render(
-  <MyEditor />,
+  <MyEditor/>,
   document.getElementById('root')
 );
