@@ -16,7 +16,7 @@ const Register= ({history})=>{
 <div className={"field"}>
   <label className={"label"}>Username</label>
   <div className={"control has-icons-left has-icons-right"}>
-    <input className={"input is-success"} type="text" placeholder="Text input" value="bulma"/>
+    <input className={"input is-success"} type="text" placeholder="Text input" />
     <span className={"icon is-small is-left"}>
       <i className={"fa fa-user"}></i>
     </span>
@@ -30,7 +30,7 @@ const Register= ({history})=>{
 <div className={"field"}>
   <label className={"label"}>Email</label>
   <div className={"control has-icons-left has-icons-right"}>
-    <input className={"input is-danger"} type="text" placeholder="Email input" value=""/>
+    <input className={"input is-danger"} type="text" placeholder="Email input" />
     <span className={"icon is-small is-left"}>
       <i className={"fa fa-envelope"}></i>
     </span>
@@ -44,7 +44,7 @@ const Register= ({history})=>{
 <div className={"field"}>
   <label className={"label"}>Password</label>
   <div className={"control has-icons-left has-icons-right"}>
-    <input className={"input is-danger"} type="text" placeholder="Password" value=""/>
+    <input className={"input is-danger"} type="password" placeholder="Password" />
     <span className={"icon is-small is-left"}>
       <i className={"fa fa-envelope"}></i>
     </span>
@@ -57,7 +57,7 @@ const Register= ({history})=>{
 <div className={"field"}>
   <label className={"label"}>Confirm Password</label>
   <div className={"control has-icons-left has-icons-right"}>
-    <input className={"input is-danger"} type="text" placeholder="Confirm Password" value=""/>
+    <input className={"input is-danger"} type="password" placeholder="Confirm Password" />
     <span className={"icon is-small is-left"}>
       <i className={"fa fa-envelope"}></i>
     </span>
