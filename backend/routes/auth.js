@@ -6,15 +6,16 @@ module.exports = function(passport) {
 
   // GET registration page
   router.get('/signup', function(req, res) {
-    res.render('signup');
+    console.log('SINGUP');
   });
 
   router.post('/signup', function(req, res) {
     // validation step
     if (req.body.password!==req.body.passwordRepeat) {
-      return res.render('signup', {
-        error: "Passwords don't match."
-      });
+      //how to alert
+      // return res.render('signup', {
+      //   error: "Passwords don't match."
+      // });
     }
     var u = new models.User({
       username: req.body.username,

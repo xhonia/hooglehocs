@@ -22,7 +22,7 @@ REQUIRED_ENV.forEach(function(el) {
 
 mongoose.connect(connect);
 //importing other local files
-var models = require('../models');
+var models = require('.../models');
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 //starting express
