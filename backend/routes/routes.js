@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models');
+var models = require('.../models');
 var User = models.User;
 
 // Users who are not logged in can see these routes

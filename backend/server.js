@@ -3,7 +3,7 @@ const express = require('express')
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var path = require('path');
-
+var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -22,7 +22,7 @@ REQUIRED_ENV.forEach(function(el) {
 
 mongoose.connect(connect);
 //importing other local files
-var models = require('./models');
+var models = require('.../models');
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 //starting express
