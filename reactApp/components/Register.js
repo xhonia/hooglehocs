@@ -1,7 +1,7 @@
 var React = require('react');
 import ReactDOM from 'react-dom';
 import { HashRouter, Link, Redirect } from 'react-router-dom';
-
+var axios = require('axios');
 
 class Register extends React.Component{
   constructor(props) {
@@ -64,7 +64,7 @@ class Register extends React.Component{
             </span>
           </div>
         </div>
-        
+
         <div className={"field"}>
           <label className={"label"}>Confirm Password</label>
           <div className={"control has-icons-left has-icons-right"}>
