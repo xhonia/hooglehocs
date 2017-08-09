@@ -2,16 +2,27 @@ var React = require('react');
 import ReactDOM from 'react-dom';
 import { HashRouter, Link, Redirect } from 'react-router-dom';
 
-const Register= ({history})=>{
+
+class Register extends React.Component{
+  constructor(props) {
+     super(props);
+
+    this.state = {
+     username: '',
+     password: ''
+  };
+}
+render(){
   return(
     <div>
       <div className={'has-text-centered'}><h1>Register</h1></div>
       <div className={"field"}>
-  <label className={"label"}>Name</label>
-  <div className={"control"}>
-    <input className={"input"} type="text" placeholder="Text input"/>
-  </div>
-</div>
+        <label className={"label"}>Name</label>
+        <div className={"control"}>
+          <input className={"input"} type="text" placeholder="Text input"/>
+        </div>
+      </div>
+
 
 <div className={"field"}>
   <label className={"label"}>Username</label>
@@ -46,7 +57,7 @@ const Register= ({history})=>{
   <div className={"control has-icons-left has-icons-right"}>
     <input className={"input is-danger"} type="password" placeholder="Password" />
     <span className={"icon is-small is-left"}>
-      <i className={"fa fa-envelope"}></i>
+        <i className={"fa fa-envelope"}></i>
     </span>
     <span className={"icon is-small is-right"}>
       <i className={"fa fa-warning"}></i>
@@ -77,8 +88,9 @@ const Register= ({history})=>{
 <div className={"control"}>
   <button className={"button "} onClick={() => history.push('/')}>Login</button>
 </div>
+
     </div>
   )
 }
-
+}
 export default Register;

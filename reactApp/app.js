@@ -5,9 +5,12 @@ import { HashRouter, Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Docs from './components/App';
 
-// ReactDOM.render(
-//   <HashRouter>
-//   <App/>
-// </HashRouter>,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+
+  <HashRouter>
+  <App/>
+</HashRouter>,
+
+  document.getElementById('root')
+);
+

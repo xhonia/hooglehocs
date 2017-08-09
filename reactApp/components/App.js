@@ -6,6 +6,7 @@ import Register from './Register';
 import Login from './Login';
 import Docs from './Docs';
 import { HashRouter, Link, Route, Switch } from 'react-router-dom';
+
 import { Redirect } from 'react-router';
 import MyEditor from './MyEditor';
 
@@ -14,6 +15,7 @@ import MyEditor from './MyEditor';
 class App extends React.Component {
   render(){
     return(
+
       <div>
         <Switch>
           <Route exact path='/' component={Login}/>
@@ -22,6 +24,7 @@ class App extends React.Component {
           <Route exact path='/editor' component={MyEditor}/>
       </Switch>
     </div>
+
     )
   }
 }
