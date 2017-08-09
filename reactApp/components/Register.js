@@ -91,11 +91,13 @@ render(){
             </div>
           </div>
 
+
         </form>
 
       <div className={"control"}>
         <button className={"button "} onClick={() => this.props.history.push('/')}>Login</button>
       </div>
+
     </div>
   )
 }

@@ -3,6 +3,7 @@ var React = require('react');
 import ReactDOM from 'react-dom';
 import { HashRouter, Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import Docs from './components/App';
 
 ReactDOM.render(
 
@@ -12,3 +13,4 @@ ReactDOM.render(
 
   document.getElementById('root')
 );
+
