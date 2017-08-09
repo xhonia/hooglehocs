@@ -44,7 +44,7 @@ submit(){
             <div className={"control has-icons-left has-icons-right"}>
               <input className={"input is-danger"} type="password" onChange={(e)=>this.setState({password: e.target.value})} placeholder="Password" value={this.state.password}/>
               <span className={"icon is-small is-left"}>
-                <i className={"fa fa-envelope"}></i>
+                <i className={"fa fa-key"}></i>
               </span>
             </div>
           </div>

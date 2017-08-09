@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var models = require('.../models');
+var models = require('../models');
 
 module.exports = function(passport) {
 
   // GET registration page
-  router.get('/signup', function(req, res) {
+  router.get('/register', function(req, res) {
     console.log('SINGUP');
   });
 
-  router.post('/signup', function(req, res) {
+  router.post('/register', function(req, res) {
     // validation step
     if (req.body.password!==req.body.passwordRepeat) {
       //how to alert
@@ -17,9 +17,11 @@ module.exports = function(passport) {
       //   error: "Passwords don't match."
       // });
     }
+    console.log(req.body)
     var u = new models.User({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      email: req.body.email,
     });
     u.save(function(err, user) {
       if (err) {
@@ -27,7 +29,7 @@ module.exports = function(passport) {
         res.status(500).redirect('/register');
         return;
       }
-      console.log(user);
+      console.log('USER SAVED', user);
       res.redirect('/login');
     });
   });
