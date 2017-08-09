@@ -1,14 +1,22 @@
 var React = require('react');
 var classNames = require('classnames');
 import ReactDOM from 'react-dom';
+var axios = require('axios');
 
 class Docs extends React.Component {
   constructor(){
     super();
     this.state={
       modalOpen1: false,
-      modalOpen2: false
+      modalOpen2: false,
+      title:'Untitled'
     }
+  }
+  componentDidMount(){
+    axios.get('http://localhost:3000/doclist')
+    .then((response)=> {
+      var docs = response
+    })
   }
   modal1Toggle(e){
     e.preventDefault();
@@ -23,7 +31,19 @@ class Docs extends React.Component {
     })
   }
   createDoc(e){
-    
+    var date = new Date();
+    axios.post('/newdoc', {
+      title: this.state.title,
+      date: date
+
+    })
+    .then(function (response) {
+      console.log(response);
+      //if response is good, do something maybe?
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
   render(){
       var modalClass1 = classNames({
@@ -67,8 +87,9 @@ class Docs extends React.Component {
           <button className="modal-close is-large" onClick={(e)=>this.modal2Toggle(e)}></button>
         </div>
         </div>
-        <div>
+        <div className='box'>
           Doc List
+          {/* {docs.map((doc)=><div><a>{doc}</a></div>)} */}
         </div>
       </div>
     )
