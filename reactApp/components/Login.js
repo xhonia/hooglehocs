@@ -9,17 +9,22 @@ class Login extends React.Component{
 
     this.state = {
      username: '',
-     password: ''
+     password: '',
+     loggedIn: false
   };
 }
 
 submit(){
+  var self=this
   axios.post('http://localhost:3000/login', {
     username: this.state.username,
     password: this.state.password
   })
   .then(function (response) {
-    console.log(response);
+    if (response.data==='yo'){
+      self.props.history.push('/docs')
+      console.log('HHHHHHHHHH');
+    }
   })
   .catch(function (error) {
     console.log(error);
@@ -34,7 +39,7 @@ submit(){
         <form className='container'>
           <div className={"field"}>
             <div className={"control has-icons-left has-icons-right"}>
-              <input className={"input is-danger"} type="text" onChange={(e)=>this.setState({username: e.target.value})} placeholder="Username" value={this.state.username}/>
+              <input className="input is-danger" type="text" onChange={(e)=>this.setState({username: e.target.value})} placeholder="Username" value={this.state.username}/>
               <span className={"icon is-small is-left"}>
                 <i className={"fa fa-user"}></i>
               </span>

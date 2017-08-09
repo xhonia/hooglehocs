@@ -57,7 +57,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
   models.User.findOne({ username: username }, function (err, user) {
     // if there's an error, finish trying to authenticate (auth failed)
     if (err) {
-      console.error('Error fetching user in LocalStrategy', err);
+      console.log('Error fetching user in LocalStrategy', err);
       return done(err);
     }
     // if no user present, auth failed

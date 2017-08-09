@@ -35,9 +35,10 @@ module.exports = function(passport) {
   });
 
   // GET Login page
-  // router.get('/login', function(req, res) {
-  //   res.render('login');
-  // });
+  router.get('/login', function(req, res) {
+    console.log('user not verified');
+    // res.render('login');
+  });
   //
   // POST Login page
   router.post('/login', passport.authenticate('local',{

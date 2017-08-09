@@ -38,6 +38,7 @@ submit(){
     email: this.state.email
   })
   .then(function (response) {
+    console.log('HEEEEY');
     if(response.data==='welcome'){
       self.props.history.push('/')
     }
