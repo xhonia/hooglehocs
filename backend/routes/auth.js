@@ -6,7 +6,7 @@ module.exports = function(passport) {
 
   // GET registration page
   router.get('/signup', function(req, res) {
-    console.log('SINGUP');
+    console.log('SIGNUP');
   });
 
   router.post('/signup', function(req, res) {
