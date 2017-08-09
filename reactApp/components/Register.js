@@ -12,6 +12,25 @@ class Register extends React.Component{
       password: ''
     };
   }
+  submit(){
+    var self = this;
+    axios.post('http://localhost:3000/register', {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email
+    })
+    .then(function (response) {
+      console.log('HEEEEY');
+      if(response.data==='welcome'){
+        self.props.history.push('/')
+      }
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   render(){
     return(
       <div>
