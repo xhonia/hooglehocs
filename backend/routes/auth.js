@@ -1,15 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var models = require('.../models');
-
+var models = require('../models');
 module.exports = function(passport) {
-
   // GET registration page
   // router.get('/register', function(req, res) {
   //   console.log('SINGUP');
   // });
 
-  router.post('/signup', function(req, res) {
+  router.post('/register', function(req, res) {
+
     // validation step
     // if (req.body.password!==req.body.passwordRepeat) {
     //   //how to alert
@@ -33,17 +32,18 @@ module.exports = function(passport) {
       res.send('welcome');
     });
   });
-
   // GET Login page
+
   router.get('/login', function(req, res) {
     console.log('user not verified');
     // res.render('login');
   });
+
   //
   // POST Login page
   router.post('/login', passport.authenticate('local',{
     successRedirect: '/protected',
-    failureRedirect: '/login'
+    failureRedirect: '/register'
   }));
 
   // // GET Logout page
