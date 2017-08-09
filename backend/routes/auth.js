@@ -1,16 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models');
+var models = require('.../models');
 
 module.exports = function(passport) {
 
   // GET registration page
-  // router.get('/register', function(req, res) {
-  //   console.log('SINGUP');
-  // });
 
-  router.post('/register', function(req, res) {
+
+  router.post('/signup', function(req, res) {
     // validation step
+
     // if (req.body.password!==req.body.passwordRepeat) {
     //   //how to alert
     //   // return res.render('signup', {
@@ -22,6 +21,15 @@ module.exports = function(passport) {
       username: req.body.username,
       password: req.body.password,
       email: req.body.email
+    if (req.body.password!==req.body.passwordRepeat) {
+      //how to alert
+      // return res.render('signup', {
+      //   error: "Passwords don't match."
+      // });
+    }
+    var u = new models.User({
+      username: req.body.username,
+      password: req.body.password
     });
     u.save(function(err, user) {
       if (err) {

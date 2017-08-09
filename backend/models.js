@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
 
 var documentSchema =  mongoose.Schema({
   title: String,
-  date: String,
+  date: Object,
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -41,7 +41,7 @@ var documentSchema =  mongoose.Schema({
 
 
 User = mongoose.model('User', userSchema);
-Document = mongoose.model('Document', documentSchema);
+Document = mongoose.model('Document', reminderSchema);
 
 module.exports = {
   User: User,
