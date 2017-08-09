@@ -27,7 +27,7 @@ var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 //starting express
 const app = express()
-
+app.use(bodyParser.json())
 // Example route
 app.get('/', function (req, res) {
   res.send('Hello World!')
@@ -57,7 +57,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
   models.User.findOne({ username: username }, function (err, user) {
     // if there's an error, finish trying to authenticate (auth failed)
     if (err) {
-      console.error('Error fetching user in LocalStrategy', err);
+      console.log('Error fetching user in LocalStrategy', err);
       return done(err);
     }
     // if no user present, auth failed
@@ -88,25 +88,25 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+// if (app.get('env') === 'development') {
+//   app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.render('error', {
+//       message: err.message,
+//       error: err
+//     });
+//   });
+// }
+//
+// // production error handler
+// // no stacktraces leaked to user
+// app.use(function(err, req, res, next) {
+//   res.status(err.status || 500);
+//   res.render('error', {
+//     message: err.message,
+//     error: {}
+//   });
+// });
 
 
 app.listen(3000, function () {
