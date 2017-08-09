@@ -14,7 +14,7 @@ class Login extends React.Component{
 }
 
 submit(){
-  axios.post('/login', {
+  axios.post('http://localhost:3000/login', {
     username: this.state.username,
     password: this.state.password
   })
