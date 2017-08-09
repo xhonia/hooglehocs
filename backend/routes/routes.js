@@ -5,9 +5,10 @@ var User = models.User;
 var Document = models.Document;
 // Users who are not logged in can see these routes
 
-router.get('/', function(req, res, next) {
-  res.send('home');
-});
+//
+// router.get('/', function(req, res, next) {
+//   res.render('home');
+// });
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
@@ -55,6 +56,16 @@ router.post('/newdoc', function(req,res){
     }
   })
 })
+
+router.get('/protected', function(req, res, next) {
+  console.log('user reached backend')
+  res.send('yo')
+  // res.render('protectedRoute', {
+  //   username: req.user.username,
+  // });
+});
+
+
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
 
 module.exports = router;

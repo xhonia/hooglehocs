@@ -96,9 +96,4 @@ class Docs extends React.Component {
   }
 }
 
-ReactDOM.render(
-<Docs/>,
-  document.getElementById('root')
-);
-
-// export default Docs;
+export default Docs;

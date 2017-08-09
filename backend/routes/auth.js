@@ -6,7 +6,9 @@ module.exports = function(passport) {
   // router.get('/register', function(req, res) {
   //   console.log('SINGUP');
   // });
+
   router.post('/register', function(req, res) {
+
     // validation step
     // if (req.body.password!==req.body.passwordRepeat) {
     //   //how to alert
@@ -31,19 +33,24 @@ module.exports = function(passport) {
     });
   });
   // GET Login page
-  // router.get('/login', function(req, res) {
-  //   res.render('login');
-  // });
+
+  router.get('/login', function(req, res) {
+    console.log('user not verified');
+    // res.render('login');
+  });
+
   //
   // POST Login page
   router.post('/login', passport.authenticate('local',{
     successRedirect: '/protected',
     failureRedirect: '/register'
   }));
+
   // // GET Logout page
   // router.get('/logout', function(req, res) {
   //   req.logout();
   //   res.redirect('/');
   // });
+
   return router;
 };

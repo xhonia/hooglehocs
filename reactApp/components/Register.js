@@ -28,7 +28,6 @@ verify(){
   } else {
     this.submit()
   }
-}
 
 submit(){
   var self = this;

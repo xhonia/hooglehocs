@@ -47,7 +47,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
   models.User.findOne({ username: username }, function (err, user) {
     // if there's an error, finish trying to authenticate (auth failed)
     if (err) {
-      console.error('Error fetching user in LocalStrategy', err);
+      console.log('Error fetching user in LocalStrategy', err);
       return done(err);
     }
     // if no user present, auth failed
@@ -93,6 +93,7 @@ app.use(function(req, res, next) {
 //     error: {}
 //   });
 // });
+
 app.listen(3000, function () {
   console.log('Backend server for Electron App running on port 3000!')
 })
