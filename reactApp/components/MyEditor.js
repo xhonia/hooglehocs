@@ -230,5 +230,9 @@ class MyEditor extends React.Component {
     );
   }
 }
+// ReactDOM.render(
+// <MyEditor/>,
+//   document.getElementById('root')
+// );
 
 export default MyEditor;

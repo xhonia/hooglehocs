@@ -40,7 +40,7 @@ var documentSchema =  mongoose.Schema({
 
 
 User = mongoose.model('User', userSchema);
-Document = mongoose.model('Document', reminderSchema);
+Document = mongoose.model('Document', documentSchema);
 
 module.exports = {
   User: User,
