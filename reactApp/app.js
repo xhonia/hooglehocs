@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 
 ReactDOM.render(
 
+
   <HashRouter>
   <App/>
 </HashRouter>,

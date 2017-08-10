@@ -37,12 +37,13 @@ submit(){
     password: this.state.password,
     email: this.state.email
   })
-  .then(function (response) {
-    console.log('HEEEEY');
+  .then((response)=> {
+    console.log("resp",response);
+    console.log("data",response.data);
     if(response.data==='welcome'){
       self.props.history.push('/')
     }
-    console.log(response);
+
   })
   .catch(function (error) {
     console.log(error);
