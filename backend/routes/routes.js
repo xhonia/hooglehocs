@@ -12,6 +12,7 @@ var User = models.User;
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
 router.use(function(req, res, next){
+  console.log('REQ', req)
   if (!req.user) {
     res.redirect('/login');
   } else {

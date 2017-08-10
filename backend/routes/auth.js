@@ -36,7 +36,7 @@ module.exports = function(passport) {
 
   // GET Login page
   router.get('/login', function(req, res) {
-    console.log('user not verified');
+    console.log('user not verified');//refresh page in the client
     // res.render('login');
   });
   //
