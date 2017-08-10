@@ -45,14 +45,14 @@ class Docs extends React.Component {
     console.log("createDoc clicked");
     this.props.history.push('/editor')
   }
-  docClick(e){
-
-    console.log("doc that was clicked:", e.currentTarget.textContent);
-    // axios.get('http://localhost:3000/newdoc', {
-    //   e.currentTarget.textContent
-    // })
-    this.props.history.push('/editor')
-  }
+  // docClick(e){
+  //
+  //   console.log("doc that was clicked:", e.currentTarget.textContent);
+  //   // axios.get('http://localhost:3000/newdoc', {
+  //   //   e.currentTarget.textContent
+  //   // })
+  //   this.props.history.push('/editor')
+  // }
   render(){
       var modalClass1 = classNames({
         'modal': true,
@@ -77,7 +77,6 @@ class Docs extends React.Component {
                 <input type="submit" value="Create" onClick={(e) => {
                   this.modal1Toggle(e)
                   this.createDoc(e)
-                  this.props.history.push('/editor')
                 }}/>
               </div>
             </div>

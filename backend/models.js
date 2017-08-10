@@ -12,7 +12,6 @@ var userSchema = mongoose.Schema({
 
 var documentSchema =  mongoose.Schema({
   title: String,
-  date: String,
   content:Object,
   author: {
     type: mongoose.Schema.Types.ObjectId,
