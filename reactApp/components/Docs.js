@@ -2,20 +2,31 @@ var React = require('react');
 var classNames = require('classnames');
 import ReactDOM from 'react-dom';
 var axios = require('axios');
+import { HashRouter, Link, Route, Switch } from 'react-router-dom';
+
+
 
 class Docs extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state={
       modalOpen1: false,
       modalOpen2: false,
-      title:'Untitled'
+      title:'Untitled',
+      docs: []
     }
   }
+
   componentDidMount(){
     axios.get('http://localhost:3000/doclist')
     .then((response)=> {
-      var docs = response
+
+      console.log("data cdm",response.data);
+       this.setState({docs: response.data})
+       console.log("state.docs",this.state.docs);
+    })
+    .catch((err)=>{
+      console.log("err:",err);
     })
   }
   modal1Toggle(e){
@@ -31,19 +42,16 @@ class Docs extends React.Component {
     })
   }
   createDoc(e){
-    var date = new Date();
-    axios.post('/newdoc', {
-      title: this.state.title,
-      date: date
+    console.log("createDoc clicked");
+    this.props.history.push('/editor')
+  }
+  docClick(e){
 
-    })
-    .then(function (response) {
-      console.log(response);
-      //if response is good, do something maybe?
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    console.log("doc that was clicked:", e.currentTarget.textContent);
+    // axios.get('http://localhost:3000/newdoc', {
+    //   e.currentTarget.textContent
+    // })
+    this.props.history.push('/editor')
   }
   render(){
       var modalClass1 = classNames({
@@ -54,6 +62,7 @@ class Docs extends React.Component {
         'modal': true,
         'is-active': this.state.modalOpen2
       });
+
     return(
       <div>
         <h1>Document Portal</h1>
@@ -64,10 +73,12 @@ class Docs extends React.Component {
             <div className="modal-background" onClick={(e)=>this.modal1Toggle(e)}></div>
             <div className="modal-content">
               <div className='box'>Doc Name input
-                <input type='text' />
-                <input type="submit" value="Create" onClick={(e)=>{
+                <input type='text' value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})} />
+                <input type="submit" value="Create" onClick={(e) => {
                   this.modal1Toggle(e)
-                  this.createDoc(e) }}/>
+                  this.createDoc(e)
+                  this.props.history.push('/editor')
+                }}/>
               </div>
             </div>
             <button className="modal-close is-large" onClick={(e)=>this.modal1Toggle(e)}></button>
@@ -89,11 +100,17 @@ class Docs extends React.Component {
         </div>
         <div className='box'>
           Doc List
-          {/* {docs.map((doc)=><div><a>{doc}</a></div>)} */}
+          {this.state.docs.map((doc)=><Link to={`/editor/${doc._id}`} key={doc._id} >{doc.title}</Link>)}
+          {/* halfway through linking to page that fills with specific doc */}
         </div>
       </div>
     )
   }
 }
+
+// ReactDOM.render(
+// <Docs/>,
+//   document.getElementById('root')
+// );
 
 export default Docs;

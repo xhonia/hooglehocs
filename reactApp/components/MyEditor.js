@@ -1,8 +1,9 @@
 var React = require('react');
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, Modifier, RichUtils} from 'draft-js';
+import {Editor, EditorState, Modifier, RichUtils, ContentState, convertFromoRaw} from 'draft-js';
 import Toolbar from './Toolbar';
 import Register from './Register';
+var axios = require('axios');
 
 
 // Add Decoration in Toolbar
@@ -126,7 +127,16 @@ class MyEditor extends React.Component {
     this.onChange = (editorState) => this.setState({editorState});
     this.toggleColor = (toggledColor) => this.toggleColor(toggledColor);
   }
-
+  componentDidMount(){
+    console.log("state:", this.state.editorState);
+    axios.get('http://localhost:3000/doc')
+    .then((response)=>{
+      console.log("find the raw content to convert from:", response.data);
+    })
+    .catch((err)=>{
+      console.log("error getting doc page", err);
+    })
+  }
   // Color Inline Style
   toggleColor(toggledColor) {
     const {editorState} = this.state;
@@ -192,19 +202,21 @@ class MyEditor extends React.Component {
   }
 
 
+
   render() {
+
     return (
       <div className={'hero is-large is-light is-bold is-fullheight'}>
         <div className={'has-text-centered is-centered is-light'}>
           <div className={'is centered'} style={styles.root}>
 
-
-            <ColorControls
+              <h1>{this.props.title}</h1>
+            {/* <ColorControls
               editorState={this.state.editorState}
               onToggle={this.toggleColor}
-            />
+            /> */}
 
-            <Toolbar boldClicked={(e) => this.boldClicked(e)}
+            <Toolbar editorState={this.state.editorState} boldClicked={(e) => this.boldClicked(e)}
               italicClicked={(e) => this.italicClicked(e)}
               underlineClicked={(e) => this.underlineClicked(e)}
               codeClicked={(e) => this.codeClicked(e)}
@@ -222,6 +234,7 @@ class MyEditor extends React.Component {
                 // handleKeyCommand={this.handleKeyCommand}
               />
             </div>
+            <a onClick={()=>this.props.history.push('/docs')}>Docs</a>
 
           </div>
           {/* <Register/> */}

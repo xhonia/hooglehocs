@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
 
 var documentSchema =  mongoose.Schema({
   title: String,
-  date: Object,
+  date: String,
+  content:Object,
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

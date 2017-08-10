@@ -31,30 +31,66 @@ router.use(function(req, res, next){
 
 router.post('/newdoc', function(req,res){
   console.log("body", req.body);
-  console.log("req.user?", req.user);
-  var user = User.findById(req.user._id)
-  var doc = new Document({
-    title: req.body.title,
-    data: req.body.date,
-    author: user._id
-  })
-  doc.save(function(err, doc) {
-    if (err) {
-      console.log(err);
-      res.status(500).send('ERR');
-      return;
-    }
-    console.log('doc SAVED', doc);
-    res.send('created');
-  });
-  user.documents.push(doc)
-  user.save(function(err,user){
+  // console.log("req.user?", req.user);
+  Document.findById(id, function(err, dock){
     if (err){
-      console.log("user docs not updated");
+      console.log("error in doc find");
+    } else if (!dock){
+        var doc = new Document({
+          title: req.body.title,
+          date: req.body.date,
+          author: req.user,
+          content: req.body.content
+        })
+        doc.save(function(err, doc) {
+          if (err) {
+            console.log("xhonia",err);
+            res.status(500).send('ERR');
+            return;
+          }
+          console.log('doc SAVED', doc);
+          res.send('created');
+        });
     } else{
-      console.log("user updated", user);
+      console.log("dock in else", dock);
+      dock.title= req.body.title,
+      dock.content=req.body.content,
+      dock.save(function(err,doc){
+        if (err){
+          console.log("robinson",err);
+          res.status(500).send('ERR');
+          return;
+        } else {
+          console.log('doc UPDATED', doc);
+          res.send('updated');
+        }
+
+      })
     }
   })
+  // var user = User.findById(req.user._id)
+  // console.log("user", user);
+
+  // user.documents.push(doc)
+  // user.save(function(err,user){
+  //   if (err){
+  //     console.log("user docs not updated");
+  //   } else{
+  //     console.log("user updated", user);
+  //   }
+  // })
+})
+router.get('/doclist', function(req, res){
+  console.log("getting list for cdm");
+  Document.find({author: req.user._id}, function(err,docs){
+    if (err){
+      console.log("doclist find err",err);
+    } else {
+      console.log("docs:",docs);
+      res.send(docs)
+    }
+  })
+  // console.log("array of docs? or objects?", Doc);
 })
 
 router.get('/protected', function(req, res, next) {
