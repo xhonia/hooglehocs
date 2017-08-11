@@ -80,7 +80,6 @@ class Docs extends React.Component {
                 <input type="submit" value="Create" onClick={(e) => {
                   this.modal1Toggle(e)
                   this.createDoc(e)
-                  this.props.history.push('/editor')
                 }}/>
               </div>
             </div>
@@ -119,4 +118,3 @@ class Docs extends React.Component {
 // );
 
 export default Docs;
-
