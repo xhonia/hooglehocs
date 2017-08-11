@@ -11,7 +11,7 @@ class Docs extends React.Component {
     this.state={
       modalOpen1: false,
       modalOpen2: false,
-
+      docid: '',
       title:'Untitled',
       docs: []
     }
@@ -56,6 +56,20 @@ class Docs extends React.Component {
     this.props.history.push('/editor')
 
   }
+  fetch(){
+    console.log(this.state.docid)
+    var socket = io.connect('http://localhost:3000');
+    socket.emit('grabfile', { docid: this.state.docid });
+    socket.on('errid', function(data){
+      alert('invalid: ', data)
+    })
+    socket.on('suc', (data)=>{
+      console.log('sucdoc returned', data)
+      console.log(this.props);
+      this.props.history.push('/editor')
+    })
+  }
+
   render(){
       var modalClass1 = classNames({
         'modal': true,
@@ -93,9 +107,9 @@ class Docs extends React.Component {
         <div className={modalClass2}>
           <div className="modal-background" onClick={(e)=>this.modal2Toggle(e)}></div>
           <div className="modal-content">
-            <div className="box">Doc Collab input
-            <input type='text'/>
-            <input type="submit" value="Create" onClick={(e)=>this.modal2Toggle(e)}/>
+            <div className="box">Enter doc id
+            <input type='text' onChange={(e)=>this.setState({docid: e.target.value})}/>
+            <input type="submit" value="Fetch" onClick={(e)=>{this.modal2Toggle(e), this.fetch()}}/>
           </div>
         </div>
           <button className="modal-close is-large" onClick={(e)=>this.modal2Toggle(e)}></button>
@@ -106,6 +120,9 @@ class Docs extends React.Component {
 
           {this.state.docs.map((doc)=><Link to={`/editor/${doc._id}`} key={doc._id} >{doc.title}</Link>)}
 
+        </div>
+        <div>
+          <button onClick={()=>this.props.history.push('/')}>Logout</button>
         </div>
       </div>
     )
@@ -119,4 +136,3 @@ class Docs extends React.Component {
 // );
 
 export default Docs;
-

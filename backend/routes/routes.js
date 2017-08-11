@@ -13,7 +13,7 @@ var Document = models.Document;
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
 router.use(function(req, res, next){
-  console.log('REQ', req)
+
   if (!req.user) {
     res.redirect('/login');
   } else {
@@ -31,16 +31,16 @@ router.use(function(req, res, next){
 // });
 
 router.post('/newdoc', function(req,res){
-  console.log("body", req.body);
+
   // console.log("req.user?", req.user);
-  Document.findById(id, function(err, dock){
+  Document.findById(req.user._id, function(err, dock){
     if (err){
       console.log("error in doc find");
     } else if (!dock){
         var doc = new Document({
           title: req.body.title,
           date: req.body.date,
-          author: req.user,
+          author: req.user._id,
           content: req.body.content
         })
         doc.save(function(err, doc) {
@@ -101,6 +101,7 @@ router.get('/protected', function(req, res, next) {
   //   username: req.user.username,
   // });
 });
+
 
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////

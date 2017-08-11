@@ -38,8 +38,8 @@ submit(){
     email: this.state.email
   })
   .then((response)=> {
-    console.log("resp",response);
-    console.log("data",response.data);
+    // console.log("resp",response);
+    // console.log("data",response.data);
     if(response.data==='welcome'){
       self.props.history.push('/')
     }
