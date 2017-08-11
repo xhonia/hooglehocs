@@ -32,16 +32,22 @@ router.use(function(req, res, next){
 
 router.post('/newdoc', function(req,res){
 
+  // console.log("body.content", req.body.content);
   // console.log("req.user?", req.user);
-  Document.findById(req.user._id, function(err, dock){
+  Document.find({title:req.body.title}, function(err, dock){
+    console.log("THIS IS DOCK:", dock);
+
     if (err){
       console.log("error in doc find");
-    } else if (!dock){
+    } else if (dock.length === 0){
+      console.log("HALP");
         var doc = new Document({
+
           title: req.body.title,
           date: req.body.date,
           author: req.user._id,
           content: req.body.content
+
         })
         doc.save(function(err, doc) {
           if (err) {
@@ -53,10 +59,10 @@ router.post('/newdoc', function(req,res){
           res.send('created');
         });
     } else{
-      console.log("dock in else", dock);
-      dock.title= req.body.title,
-      dock.content=req.body.content,
-      dock.save(function(err,doc){
+      console.log("dock in else", req.body);
+      dock[0].title= req.body.body.title,
+      dock[0].content=req.body.body.content,
+      dock[0].save(function(err,doc){
         if (err){
           console.log("robinson",err);
           res.status(500).send('ERR');
@@ -93,7 +99,19 @@ router.get('/doclist', function(req, res){
   })
   // console.log("array of docs? or objects?", Doc);
 })
-
+router.get('/opendoc', function(req,res){
+  console.log("getting doc info to pop editor", req.query);
+  Document.findById(req.query.id, function(err, doc){
+    if(err){
+      console.log("problem getting doc info to popualte editor", err);
+      res.status(500).send('ERR');
+      return;
+    }else {
+      console.log("got doc info", doc);
+      res.send(doc)
+    }
+  })
+})
 router.get('/protected', function(req, res, next) {
   console.log('user reached backend')
   res.send('yo')

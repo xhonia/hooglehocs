@@ -7,7 +7,7 @@ class Toolbar extends React.Component {
   constructor(props){
     super(props);
      this.state = {
-       title: "Untitled Document",
+       title: this.props.title,
        modal: false
      }
   }
@@ -17,12 +17,19 @@ class Toolbar extends React.Component {
     var rawContent = convertToRaw(content)
     console.log("raw content state:", rawContent);
     var date = new Date();
+    //{content:JSON.stringify(rawContent), title: this.state.title}
     axios.post('http://localhost:3000/newdoc', {
-      title: this.state.title,
-      date: date,
-      content: rawContent
-
-    })
+      method: "POST",
+      credentials: 'include',
+      headers: {'Content-Type': 'application/json'},
+      body: {content:JSON.stringify(rawContent), title: this.state.title}
+    } )
+    // fetch('http://localhost:3000/newdoc', {
+    //   method: "POST",
+    //   credentials: 'include',
+    //   headers: {'Content-Type': 'application/json'},
+    //   body: {name: "xhonia"}
+    // })
     .then(function (response) {
       console.log("success response on creat doc",response);
       //if response is good, do something maybe?

@@ -1,6 +1,6 @@
 var React = require('react');
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, Modifier, RichUtils, ContentState, convertFromoRaw} from 'draft-js';
+import {Editor, EditorState, Modifier, RichUtils, ContentState, convertFromRaw} from 'draft-js';
 import Toolbar from './Toolbar';
 import Register from './Register';
 var axios = require('axios');
@@ -121,17 +121,38 @@ const ColorControls = (props) => {
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      title: "Untitled"
+    };
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({editorState});
     this.toggleColor = (toggledColor) => this.toggleColor(toggledColor);
   }
   componentDidMount(){
-    console.log("state:", this.state.editorState);
-    axios.get('http://localhost:3000/doc')
+    console.log("props", this.props.match);
+    fetch(`http://localhost:3000/opendoc?id=${this.props.match.params.id}`, {
+      credentials: 'include',
+    })
     .then((response)=>{
-      console.log("find the raw content to convert from:", response.data);
+      // console.log("find the raw content to convert from:", response.json());
+        // var notRaw =  convertFromRaw(response.data.content);
+        // console.log("converted from raw", notRaw);
+        // this.setState({
+        //   editorState: EditorState.createWithContent(notRaw),
+        //   title: response.data.title
+        // })
+      return response.json();
+    })
+    .then((resp) => {
+      console.log("RESP: ", resp);
+      var notRaw =  convertFromRaw(JSON.parse(resp.content));
+      console.log("converted from raw", notRaw);
+      this.setState({
+        editorState: EditorState.createWithContent(notRaw),
+        title: resp.title
+      })
     })
     .catch((err)=>{
       console.log("error getting doc page", err);
@@ -216,7 +237,7 @@ class MyEditor extends React.Component {
               onToggle={this.toggleColor}
             /> */}
 
-            <Toolbar editorState={this.state.editorState} boldClicked={(e) => this.boldClicked(e)}
+            <Toolbar title={this.state.title} editorState={this.state.editorState} boldClicked={(e) => this.boldClicked(e)}
               italicClicked={(e) => this.italicClicked(e)}
               underlineClicked={(e) => this.underlineClicked(e)}
               codeClicked={(e) => this.codeClicked(e)}
