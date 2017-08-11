@@ -9,6 +9,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var mongoose = require('mongoose');
+
+
+//connecting to db
 var connect = process.env.MONGODB_URI;
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
 REQUIRED_ENV.forEach(function(el) {
@@ -24,6 +27,8 @@ var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 //starting express
 const app = express()
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 app.use(bodyParser.json())
 // Example route
 app.get('/', function (req, res) {
@@ -67,7 +72,7 @@ app.use('/', auth(passport));
 app.use('/', routes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');//unfound goes here 
+  var err = new Error('Not Found');//unfound goes here
   err.status = 404;
   next(err);
 });
@@ -94,6 +99,28 @@ app.use(function(req, res, next) {
 //   });
 // });
 
-app.listen(3000, function () {
+io.on('connection', function (socket) {
+
+  socket.on('grabfile', function (data) {
+    console.log(data);
+    models.Document.findById({ _id: data.docid }, function (err, doc) {
+      // if there's an error, finish trying to authenticate (auth failed)
+      console.log('DOOOOOC', doc);
+      if (err) {
+        console.log('Error fetching doc', err);
+        socket.emit('errid', {err: err})
+        return done(err);
+      } else if(!doc){
+        console.log('not Found ')
+      } else {
+        console.log('HEEER', doc);
+        socket.emit('suc', {doc: doc.content})
+      }
+  });
+});
+})
+
+
+server.listen(3000, function () {
   console.log('Backend server for Electron App running on port 3000!')
 })
