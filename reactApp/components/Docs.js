@@ -5,13 +5,13 @@ var axios = require('axios');
 import { HashRouter, Link, Route, Switch } from 'react-router-dom';
 
 
-
 class Docs extends React.Component {
   constructor(props){
     super(props);
     this.state={
       modalOpen1: false,
       modalOpen2: false,
+
       title:'Untitled',
       docs: []
     }
@@ -27,6 +27,7 @@ class Docs extends React.Component {
     })
     .catch((err)=>{
       console.log("err:",err);
+
     })
   }
   modal1Toggle(e){
@@ -42,17 +43,19 @@ class Docs extends React.Component {
     })
   }
   createDoc(e){
+
     console.log("createDoc clicked");
     this.props.history.push('/editor')
   }
-  // docClick(e){
-  //
-  //   console.log("doc that was clicked:", e.currentTarget.textContent);
-  //   // axios.get('http://localhost:3000/newdoc', {
-  //   //   e.currentTarget.textContent
-  //   // })
-  //   this.props.history.push('/editor')
-  // }
+  docClick(e){
+
+    console.log("doc that was clicked:", e.currentTarget.textContent);
+    // axios.get('http://localhost:3000/newdoc', {
+    //   e.currentTarget.textContent
+    // })
+    this.props.history.push('/editor')
+
+  }
   render(){
       var modalClass1 = classNames({
         'modal': true,
@@ -99,13 +102,15 @@ class Docs extends React.Component {
         </div>
         <div className='box'>
           Doc List
+
           {this.state.docs.map((doc)=><Link to={`/editor/${doc._id}`} key={doc._id} >{doc.title}</Link>)}
-          {/* halfway through linking to page that fills with specific doc */}
+
         </div>
       </div>
     )
   }
 }
+
 
 // ReactDOM.render(
 // <Docs/>,

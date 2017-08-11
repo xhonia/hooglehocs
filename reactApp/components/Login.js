@@ -6,7 +6,6 @@ import { HashRouter, Link, Redirect } from 'react-router-dom';
 class Login extends React.Component{
   constructor(props) {
      super(props);
-
     this.state = {
      username: '',
      password: '',
@@ -14,18 +13,23 @@ class Login extends React.Component{
   };
 }
 
-submit(){
-  var self=this
+submit(e){
+  e.preventDefault()
+  //var self=this
+  // console.log(this);
   axios.post('http://localhost:3000/login', {
     username: this.state.username,
     password: this.state.password
   })
   .then(function (response) {
     if (response.data==='yo'){
-      self.props.history.push('/docs')
+      this.props.history.push('/docs')
       console.log('HHHHHHHHHH');
+    } else {
+      this.props.history.push('/login')
+      alert('Invalid user')
     }
-  })
+  }.bind(this))
   .catch(function (error) {
     console.log(error);
   });
@@ -54,7 +58,7 @@ submit(){
             </div>
           </div>
           <div className={"control"}>
-            <button className={"button is-primary"} onClick={()=>this.submit()}>Login</button>
+            <button className={"button is-primary"} onClick={this.submit.bind(this)}>Login</button>
           </div>
           <div className={"control"}>
             <button className={"button "} onClick={() => this.props.history.push('/register')}>Register</button>
